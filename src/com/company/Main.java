@@ -32,11 +32,11 @@ public class Main {
         String welcomeMessage = "------------------Number Guessing Game---------------------\n\n" +
                                 "Welcome to the number guessing game!\n";
         String rangeMessage = "Please enter the maximum number to guess to:";
-        String letsGoPrompt = "Great! Let's begin.\n";
+        String letsGoPrompt = "Great! Let's begin.\n-------------------------------------\n";
         String entryPrompt = "Please enter your guess:";
         String tooHighPrompt = "Your guess was too high. Please try again.\n";
         String tooLowPrompt = "Your guess was too low. Please try again.\n";
-        String correctPrompt = "You got it! Great work.\n";
+        String correctPrompt = "You got it! You're total guess count was: ";
 
         // Let's also create error messages too. We will use these when we get to exception handling.
         String invalidEntry = "Invalid entry. Please enter a positive whole number.";
@@ -58,15 +58,23 @@ public class Main {
         System.out.println(letsGoPrompt);
 
         // 5. Now we start the infinite loop of the game.
-        while(true){ // this loop will run forever until we "break" out of it
-            System.out.println(entryPrompt);
+        while(true){
+            System.out.println(entryPrompt); // ask for number
+            userGuess = scanner.nextInt(); // grab number and store
 
+            // Lets set up the conditions
+            if (userGuess == correctAnswer) { // if guess and answer match
+                System.out.println(correctPrompt + numberOfGuesses); // print correct prompt
+                break; // exit game
+            } else if (userGuess > correctAnswer) { // if too high
+                System.out.println(tooHighPrompt);
+            } else if (userGuess < correctAnswer) { // if too low
+                System.out.println(tooLowPrompt);
+            }
 
+            // if we have gotten to this point, the answer was incorrect (loop not broken out of), so let's increment the guessing counter.
+            numberOfGuesses++;
 
         }
-
-
-
-
     }
 }
